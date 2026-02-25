@@ -1,8 +1,31 @@
 <!DOCTYPE html>
 <html>
-<head><title>SoccerCoachBot</title></head>
+<head>
+  <meta charset="utf-8">
+  <script src="https://unpkg.com/aws-amplify@8/dist/aws-amplify.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@aws-amplify/ui-react@6/dist/aws-amplify-ui-react.min.css">
+  <script src="https://unpkg.com/@aws-amplify/ui-react@6/dist/aws-amplify-ui-react.min.js"></script>
+</head>
 <body>
-<h1>SoccerCoachBot is live!</h1>
-<p>Amplify deployment working.</p>
+  <div id="root"></div>
+  <script type="module">
+    import { Amplify } from 'aws-amplify';
+    import { Authenticator } from '@aws-amplify/ui-react';
+    import outputs from '/amplify_outputs.json';  // Auto-generated after auth deploy
+    Amplify.configure(outputs);
+   
+    const { Authenticator: AuthenticatorComponent } = Authenticator;
+    const root = document.getElementById('root');
+    root.innerHTML = `
+      <AuthenticatorComponent provider="cognito" loginMechanisms={['email']}>
+        {({ signOut, user }) => (
+          <div>
+            <h1>Hello {user.username}!</h1>
+            <button onclick={() => signOut()}>Sign out</button>
+          </div>
+        )}
+      </AuthenticatorComponent>
+    `;
+  </script>
 </body>
 </html>
