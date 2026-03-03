@@ -1,21 +1,12 @@
-import React from 'react';
 import { 
   Authenticator, 
   useAuthenticator, 
-  TextField, 
   Flex, 
   Heading, 
   View,
-  Loader,
   Text 
 } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import { 
-  generateClient } from 'aws-amplify/data';
-import type { Schema } from '../../amplify/data/resource';
-import { type Team, type Message } from '../../amplify/data/resource';
-
-const client = generateClient<Schema>();
 
 function AppContent() {
   const { user, signOut } = useAuthenticator((context) => [context.user]);
@@ -35,7 +26,6 @@ function AppContent() {
 }
 
 function CoachBot() {
-  // This will be filled in later - just a placeholder for now
   return (
     <View padding="1rem" backgroundColor="background">
       <Text>Coach Bot interface coming soon...</Text>
