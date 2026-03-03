@@ -1,29 +1,11 @@
 import { 
   Authenticator, 
-  useAuthenticator, 
   Flex, 
   Heading, 
   View,
   Text 
 } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-
-function AppContent() {
-  const { user, signOut } = useAuthenticator((context) => [context.user]);
-  
-  if (!user) return <View>Loading...</View>;
-
-  return (
-    <Flex direction="column" maxWidth="800px" margin="0 auto" padding="1rem">
-      <Flex justifyContent="space-between" alignItems="center" marginBottom="1rem">
-        <Heading level={1}>Soccer Coach Bot</Heading>
-        <button onClick={signOut}>Sign Out</button>
-      </Flex>
-      
-      <CoachBot />
-    </Flex>
-  );
-}
 
 function CoachBot() {
   return (
@@ -35,12 +17,22 @@ function CoachBot() {
 
 export default function App() {
   return (
-    <Authenticator.Provider>
+    <Authenticator>
       {({ signOut, user }) => (
-        <main style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
-          <AppContent />
-        </main>
+        <Flex 
+          direction="column" 
+          maxWidth="800px" 
+          margin="0 auto" 
+          padding="1rem"
+          style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}
+        >
+          <Flex justifyContent="space-between" alignItems="center" marginBottom="1rem">
+            <Heading level={1}>Soccer Coach Bot</Heading>
+            <button onClick={signOut}>Sign Out</button>
+          </Flex>
+          <CoachBot />
+        </Flex>
       )}
-    </Authenticator.Provider>
+    </Authenticator>
   );
 }
