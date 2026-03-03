@@ -1,1 +1,56 @@
+import React from 'react';
+import { 
+  Authenticator, 
+  useAuthenticator, 
+  TextField, 
+  Flex, 
+  Heading, 
+  View,
+  Loader,
+  Text 
+} from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import { 
+  generateClient } from 'aws-amplify/data';
+import type { Schema } from '../../amplify/data/resource';
+import { type Team, type Message } from '../../amplify/data/resource';
 
+const client = generateClient<Schema>();
+
+function AppContent() {
+  const { user, signOut } = useAuthenticator((context) => [context.user]);
+  
+  if (!user) return <View>Loading...</View>;
+
+  return (
+    <Flex direction="column" maxWidth="800px" margin="0 auto" padding="1rem">
+      <Flex justifyContent="space-between" alignItems="center" marginBottom="1rem">
+        <Heading level={1}>Soccer Coach Bot</Heading>
+        <button onClick={signOut}>Sign Out</button>
+      </Flex>
+      
+      <CoachBot />
+    </Flex>
+  );
+}
+
+function CoachBot() {
+  // This will be filled in later - just a placeholder for now
+  return (
+    <View padding="1rem" backgroundColor="background">
+      <Text>Coach Bot interface coming soon...</Text>
+    </View>
+  );
+}
+
+export default function App() {
+  return (
+    <Authenticator.Provider>
+      {({ signOut, user }) => (
+        <main style={{ minHeight: '100vh', backgroundColor: '#f5f5f5' }}>
+          <AppContent />
+        </main>
+      )}
+    </Authenticator.Provider>
+  );
+}
