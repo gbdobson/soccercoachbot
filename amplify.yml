@@ -3,19 +3,17 @@ backend:
   phases:
     build:
       commands:
+        - npm install -g @aws-amplify/cli@12
+        - npx ampx --version || npx @aws-amplify/cli ampx --version
         - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
 frontend:
   phases:
-    preBuild:
-      commands:
-        - npm ci
     build:
       commands:
-        - npm run build
+        - echo "No frontend build step. Serving static index.html."
   artifacts:
-    baseDirectory: /  # For static index.html
+    baseDirectory: /
     files:
       - '**/*'
   cache:
-    paths:
-      - node_modules/**/*
+    paths: []
