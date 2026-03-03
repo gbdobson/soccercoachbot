@@ -18,7 +18,7 @@ function CoachBot() {
 export default function App() {
   return (
     <Authenticator>
-      {({ signOut, user }) => (
+      {({ signOut }) => (
         <Flex 
           direction="column" 
           maxWidth="800px" 
