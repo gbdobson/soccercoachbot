@@ -17,7 +17,7 @@ function CoachBot() {
 
 export default function App() {
   return (
-    <Authenticator>
+    <Authenticator hideSignUp={true}>
       {({ signOut }) => (
         <Flex 
           direction="column" 
