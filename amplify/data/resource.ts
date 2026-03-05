@@ -7,9 +7,11 @@ const schema = a.schema({
     gender: a.string().required(),
     seasonWeek: a.integer().required(),
     seasonNotes: a.string(),
+    messages: a.hasMany('Message', 'teamId'),
   }).authorization((allow) => [allow.owner()]),
   
   Message: a.model({
+    teamId: a.id(),
     team: a.belongsTo('Team', 'teamId'),
     role: a.string().required(),
     content: a.string().required(),
@@ -23,5 +25,4 @@ export const data = defineData({
   schema,
   name: 'CoachBotData',
 });
-
 
