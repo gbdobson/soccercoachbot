@@ -4,7 +4,7 @@ const schema = a.schema({
   Team: a
     .model({
       name: a.string().required(),
-      ageGroup: a.enum(['U10', 'U11', 'U12', 'U13','U14', 'U18']).required(),
+      ageGroup: a.enum(['U10', 'U11', 'U12', 'U13', 'U14', 'U18']).required(),
       gender: a.enum(['boys', 'girls']).required(),
       seasonWeek: a.integer().required(),
       seasonNotes: a.string(),
@@ -31,3 +31,4 @@ export const data = defineData({
   schema,
   name: 'CoachBotData',
 });
+
