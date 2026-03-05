@@ -7,12 +7,10 @@ const schema = a.schema({
     gender: a.string().required(),
     seasonWeek: a.integer().required(),
     seasonNotes: a.string(),
-    messages: a.hasMany('Message', 'teamId'),
   }).authorization((allow) => [allow.owner()]),
   
   Message: a.model({
-    teamId: a.id(),
-    team: a.belongsTo('Team', 'teamId'),
+    teamId: a.string().required(),
     role: a.string().required(),
     content: a.string().required(),
     timestamp: a.datetime().required(),
