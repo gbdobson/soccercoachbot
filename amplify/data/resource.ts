@@ -4,8 +4,8 @@ const schema = a.schema({
   Team: a
     .model({
       name: a.string().required(),
-      ageGroup: a.enum(['U6', 'U8', 'U10', 'U12', 'U14', 'U16', 'U19']).required(),
-      gender: a.enum(['boys', 'girls', 'mixed']).required(),
+      ageGroup: a.enum(['U10', 'U11', 'U12', 'U13','U14', 'U18']).required(),
+      gender: a.enum(['boys', 'girls']).required(),
       seasonWeek: a.integer().required(),
       seasonNotes: a.string(),
     })
