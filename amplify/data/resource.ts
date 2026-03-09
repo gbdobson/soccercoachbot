@@ -7,14 +7,14 @@ const schema = a.schema({
     gender: a.string().required(),
     seasonWeek: a.integer().required(),
     seasonNotes: a.string(),
-  }).authorization((allow) => [allow.owner()]),
-  
+  }),
+
   Message: a.model({
     teamId: a.string().required(),
-    role: a.string().required(),
+    role: a.string().required(),      // "coach" | "bot" enforced in UI
     content: a.string().required(),
     timestamp: a.datetime().required(),
-  }).authorization((allow) => [allow.owner()]),
+  }),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -23,4 +23,5 @@ export const data = defineData({
   schema,
   name: 'CoachBotData',
 });
+
 
